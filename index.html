@@ -1,454 +1,357 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXFIT — Forge What's Next</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #07080a;
-      --bg-2: #0d1014;
-      --ink: #f4f1ea;
-      --muted: #9a958b;
-      --line: rgba(244, 241, 234, 0.12);
-      --ember: #ff4d1a;
-      --ember-2: #ff8a3d;
-      --ice: #7ec8ff;
-      --card: #11151b;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo</title>
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      overflow-x: hidden;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    .wrap { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+body{
+  background:#0f1020;
+  color:white;
+}
 
-    /* NAV */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(7, 8, 10, 0.72);
-      border-bottom: 1px solid var(--line);
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 74px;
-    }
-    .logo {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 34px;
-      letter-spacing: 2px;
-    }
-    .logo b { color: var(--ember); }
-    .links { display: flex; gap: 28px; list-style: none; }
-    .links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 1.6px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .links a:hover { color: var(--ink); }
-    .nav-cta {
-      text-decoration: none;
-      color: #140800;
-      background: linear-gradient(90deg, var(--ember), var(--ember-2));
-      padding: 10px 16px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
+.container{
+  display:flex;
+  flex-direction:row-reverse;
+  min-height:100vh;
+}
 
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 74px);
-      display: grid;
-      place-items: center;
-      padding: 48px 0 80px;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(700px 420px at 18% 20%, rgba(255, 77, 26, 0.22), transparent 60%),
-        radial-gradient(620px 380px at 86% 70%, rgba(126, 200, 255, 0.14), transparent 62%);
-      z-index: -2;
-    }
-    .scan {
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        transparent 0 3px,
-        rgba(255,255,255,0.015) 3px 4px
-      );
-      pointer-events: none;
-      z-index: -1;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 40px;
-      align-items: center;
-      width: min(1180px, calc(100% - 40px));
-    }
-    .kicker {
-      color: var(--ember);
-      letter-spacing: 4px;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    h1 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(64px, 9vw, 128px);
-      line-height: 0.86;
-      letter-spacing: 1px;
-    }
-    h1 span { color: var(--ember); }
-    .lede {
-      max-width: 520px;
-      margin: 22px 0 30px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-    .row { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      padding: 14px 20px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-    .btn-primary {
-      background: var(--ember);
-      color: #140800;
-    }
-    .btn-ghost {
-      border: 1px solid var(--line);
-      color: var(--ink);
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 42px;
-      max-width: 520px;
-    }
-    .stat b {
-      display: block;
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 36px;
-      letter-spacing: 1px;
-    }
-    .stat span { color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+.demo{
+  width:70%;
+  background:#111;
+  position:relative;
+}
 
-    .panel {
-      position: relative;
-      min-height: 520px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), transparent 30%),
-        var(--card);
-      border: 1px solid var(--line);
-      overflow: hidden;
-    }
-    .panel-tag {
-      position: absolute;
-      top: 22px;
-      left: 22px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .silhouette {
-      position: absolute;
-      inset: 40px 20px 0;
-      background:
-        radial-gradient(circle at 50% 20%, #2a2f38, #0a0c10 68%);
-      clip-path: polygon(48% 6%, 58% 10%, 63% 22%, 70% 30%, 82% 52%, 74% 78%, 62% 100%, 38% 100%, 24% 76%, 18% 50%, 30% 28%, 40% 18%);
-      filter: drop-shadow(-18px 0 28px rgba(255,77,26,.35)) drop-shadow(18px 0 28px rgba(126,200,255,.22));
-    }
-    .meter {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      width: 88px;
-      height: 88px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .meter::after {
-      content: "";
-      position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      border-top-color: var(--ember);
-      border-right-color: var(--ice);
-      animation: spin 10s linear infinite;
-    }
+iframe{
+  width:100%;
+  height:100vh;
+  border:none;
+}
 
-    /* PROGRAMS */
-    section { padding: 88px 0; }
-    .sec-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-    h2 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(40px, 6vw, 72px);
-      line-height: 0.9;
-    }
-    h2 em { font-style: normal; color: var(--ember); }
-    .sec-copy { max-width: 360px; color: var(--muted); line-height: 1.6; }
+.right{
+  width:30%;
+  padding:30px 22px;
+  background:linear-gradient(180deg,#181a35,#0b0c18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-y:auto;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      padding: 28px 24px;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card .num { color: var(--ember); font-size: 13px; letter-spacing: 2px; }
-    .card h3 {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 34px;
-      margin: 10px 0 12px;
-    }
-    .card p { color: var(--muted); line-height: 1.6; font-size: 14px; }
+.box{
+  width:100%;
+  background:rgba(10,10,10,.88);
+  border:1px solid #FF8C2B;
+  border-radius:22px;
+  padding:26px 20px;
+  text-align:center;
+  box-shadow:0 0 35px rgba(255,140,43,.28);
+}
 
-    /* STRIP */
-    .strip {
-      border-block: 1px solid var(--line);
-      background: var(--bg-2);
-      padding: 28px 0;
-      overflow: hidden;
-    }
-    .marquee {
-      display: flex;
-      gap: 48px;
-      white-space: nowrap;
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 28px;
-      letter-spacing: 2px;
-      animation: slide 22s linear infinite;
-    }
-    .marquee span { color: var(--ember); }
+.badge{
+  display:inline-block;
+  background:#FF8C2B;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:30px;
+  font-weight:800;
+  margin-bottom:16px;
+}
 
-    /* MEMBERSHIP */
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .plan {
-      border: 1px solid var(--line);
-      padding: 28px 24px;
-      background: #0b0e12;
-    }
-    .plan.featured {
-      border-color: var(--ember);
-      background: linear-gradient(180deg, rgba(255,77,26,.12), transparent 40%), #110b09;
-    }
-    .plan h3 { font-family: "Bebas Neue", sans-serif; font-size: 32px; }
-    .price {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 56px;
-      margin: 8px 0 18px;
-    }
-    .price small { font-size: 16px; color: var(--muted); letter-spacing: 1px; }
-    .plan ul { list-style: none; color: var(--muted); line-height: 2; margin-bottom: 24px; font-size: 14px; }
+h1{
+  font-size:34px;
+  color:#FF8C2B;
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 12px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-    }
+.sub{
+  font-size:17px;
+  line-height:1.5;
+  margin-bottom:22px;
+  color:#eee;
+}
 
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes slide {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
+.features{
+  display:grid;
+  gap:12px;
+  margin:22px 0;
+}
 
-    @media (max-width: 900px) {
-      .links, .nav-cta { display: none; }
-      .hero-grid, .cards, .plans { grid-template-columns: 1fr; }
-      .panel { min-height: 380px; }
-      .sec-head { flex-direction: column; align-items: start; }
-      footer { flex-direction: column; text-align: center; }
-    }
-  </style>
+.feature{
+  background:linear-gradient(90deg,#1b1b1b,#2b2208);
+  border:1px solid rgba(255,170,70,.55);
+  padding:14px;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
+}
+
+.feature span{
+  color:#FF8C2B;
+}
+
+/* Signup Button */
+.signup-btn{
+  display:inline-block;
+  margin-top:8px;
+  padding:9px 16px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  border-radius:9px;
+  font-size:15px;
+  font-weight:800;
+  border:1px solid #1ebe5d;
+  transition:.3s;
+}
+
+.signup-btn:hover{
+  background:#1ebe5d;
+  transform:scale(1.03);
+}
+
+.website-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:16px;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.website-row a{
+  text-decoration:none;
+}
+
+.website{
+  color:#25D366;
+}
+
+.whatsapp-small{
+  color:#FF8C2B;
+}
+
+.cta{
+  display:block;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  padding:17px;
+  border-radius:16px;
+  font-size:20px;
+  font-weight:900;
+  margin-top:22px;
+  box-shadow:0 8px 18px rgba(37,211,102,.35);
+  transition:.3s;
+}
+
+.cta:hover{
+  transform:scale(1.03);
+  background:#1ebe5d;
+}
+
+/* Floating Signup Button */
+.floating-signup{
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+  background:#FF8C2B;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:8px;
+  font-size:18px;
+  font-weight:900;
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(255,140,43,0.6);
+  transition:.3s;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.floating-signup:hover{
+  transform:translateX(-50%) scale(1.08);
+  background:#E66A1A;
+  box-shadow:0 12px 25px rgba(255,140,43,0.8);
+}
+
+.trust{
+  margin-top:16px;
+  color:#ccc;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color:#aaa;
+  line-height:1.5;
+}
+
+@media(max-width:768px){
+  .container{
+    flex-direction:column-reverse;
+  }
+
+  .demo,
+  .right{
+    width:100%;
+  }
+
+  iframe{
+    height:500px;
+  }
+
+  .right{
+    padding:20px;
+  }
+}
+
+@media(max-width:480px){
+  h1{
+    font-size:28px;
+  }
+
+  .sub{
+    font-size:16px;
+  }
+
+  .feature{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .signup-btn{
+    font-size:14px;
+    padding:8px 13px;
+  }
+
+  .cta{
+    font-size:18px;
+    padding:15px;
+  }
+
+  .website-row{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+</style>
+
 </head>
+
 <body>
-  <header>
-    <nav class="wrap">
-      <div class="logo">NEX<b>FIT</b></div>
-      <ul class="links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#programs">Training</a></li>
-        <li><a href="#join">Membership</a></li>
-      </ul>
-      <a class="nav-cta" href="#join">Join now</a>
-    </nav>
-  </header>
 
-  <section class="hero" id="home">
-    <div class="scan"></div>
-    <div class="hero-grid">
-      <div>
-        <div class="kicker">Gym &amp; wellness club</div>
-        <h1>FORGE<br>WHAT'S<br><span>NEXT.</span></h1>
-        <p class="lede">
-          Strength training, recovery, and coaching under one roof.
-          Show up inconsistent no more — build a body that keeps the promises you make to yourself.
-        </p>
-        <div class="row">
-          <a class="btn btn-primary" href="#join">Start 7-day trial →</a>
-          <a class="btn btn-ghost" href="#programs">See programs</a>
-        </div>
-        <div class="stats">
-          <div class="stat"><b>24/7</b><span>Open floor</span></div>
-          <div class="stat"><b>48</b><span>Coaches</span></div>
-          <div class="stat"><b>12k</b><span>Members</span></div>
-        </div>
-      </div>
-      <aside class="panel" aria-hidden="true">
-        <div class="panel-tag">Live floor · Zone 03</div>
-        <div class="silhouette"></div>
-        <div class="meter">Day<br>01</div>
-      </aside>
-    </div>
-  </section>
+<div class="container">
 
-  <div class="strip">
-    <div class="marquee">
-      <div>STRENGTH · RECOVERY · MOBILITY · HYROX PREP · <span>NO EXCUSES</span> · STRENGTH · RECOVERY · MOBILITY · HYROX PREP · <span>NO EXCUSES</span> · </div>
-      <div>STRENGTH · RECOVERY · MOBILITY · HYROX PREP · <span>NO EXCUSES</span> · STRENGTH · RECOVERY · MOBILITY · HYROX PREP · <span>NO EXCUSES</span> · </div>
-    </div>
+  <div class="demo">
+    <a href="https://icecric.com/clk?src=27705d9eff" target="_blank" rel="noopener noreferrer" class="floating-signup">🔥 CLICK ON SIGNUP 🔥</a>
+    <iframe src="https://icecric.com/clk?src=27705d9eff"></iframe>
   </div>
 
-  <section id="programs">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>TRAIN WITH<br><em>INTENTION</em></h2>
-        <p class="sec-copy">Three tracks. One standard: leave stronger than you arrived.</p>
-      </div>
-      <div class="cards">
-        <article class="card">
-          <div>
-            <div class="num">01</div>
-            <h3>IRON LAB</h3>
-            <p>Progressive overload, powerlifting cycles, and form-first coaching on competition-grade racks.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div>
-            <div class="num">02</div>
-            <h3>ENGINE</h3>
-            <p>Conditioning that respects joints: intervals, sleds, and Hyrox-style work without junk volume.</p>
-          </div>
-        </article>
-        <article class="card">
-          <div>
-            <div class="num">03</div>
-            <h3>RESET</h3>
-            <p>Sauna, contrast, mobility, and sleep protocols so training actually sticks.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+  <div class="right">
+    <div class="box">
 
-  <section id="join">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>PICK A<br><em>LANE</em></h2>
-        <p class="sec-copy">Cancel anytime. Coaching hours included on every plan.</p>
-      </div>
-      <div class="plans">
-        <article class="plan">
-          <h3>BASE</h3>
-          <div class="price">49<small>/mo</small></div>
-          <ul>
-            <li>24/7 floor access</li>
-            <li>App programming</li>
-            <li>2 guest passes / mo</li>
-          </ul>
-          <a class="btn btn-ghost" href="#">Choose Base</a>
-        </article>
-        <article class="plan featured">
-          <h3>FORGE</h3>
-          <div class="price">89<small>/mo</small></div>
-          <ul>
-            <li>Everything in Base</li>
-            <li>Group classes + Hyrox prep</li>
-            <li>Monthly form review</li>
-          </ul>
-          <a class="btn btn-primary" href="#">Choose Forge</a>
-        </article>
-        <article class="plan">
-          <h3>ELITE</h3>
-          <div class="price">149<small>/mo</small></div>
-          <ul>
-            <li>Everything in Forge</li>
-            <li>1:1 coaching block</li>
-            <li>Recovery suite unlimited</li>
-          </ul>
-          <a class="btn btn-ghost" href="#">Choose Elite</a>
-        </article>
-      </div>
-    </div>
-  </section>
+```
+  <div class="badge">AUTO WEBSITE</div>
 
-  <footer class="wrap">
-    <div>NEXFIT · Gym &amp; Wellness</div>
-    <div>More than a gym — a next version of you</div>
-  </footer>
+  <h1>Get Your ID Now</h1>
+
+  <p class="sub">
+    Fast auto website service with easy deposit support.
+    New users can start quickly through WhatsApp.
+  </p>
+
+  <div class="features">www.icecric.com
+
+    <div class="feature">
+      Minimum Deposit: <span>₹100 Only</span>
+    </div>
+
+    <div class="feature">
+      Welcome Bonus: <span>10%</span>
+    </div>
+
+    <div class="feature">
+      Auto Website Support:
+      <a
+        class="signup-btn"
+        href="https://icecric.com/clk?src=27705d9eff"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Click on Signup
+      </a>
+    </div>
+
+    <div class="feature">
+      Quick Help:
+      <span>Deposit &amp; Withdrawal Support</span>
+    </div>
+
+  </div>
+
+  <div class="website-row">
+
+    <a
+      class="website"
+      href="https://icecric.com/clk?src=27705d9eff"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🌐 www.icecric.com
+    </a>
+
+    <a
+      class="whatsapp-small"
+      href="https://wa.me/447777364879"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 WhatsApp
+    </a>
+
+  </div>
+
+  <a
+    class="cta"
+    href="https://wa.me/447777364879?text=Hello%20I%20want%20new%20icecric%20ID"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    📲 WhatsApp Now
+  </a>
+
+  <p class="trust">
+    ✅ Trusted icecric Support<br>
+    ✅ Simple Process<br>
+    ✅ Fast Response
+  </p>
+
+  <div class="footer">
+    18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
+  </div>
+
+</div>
+```
+
+  </div>
+
+</div>
+
 </body>
 </html>
